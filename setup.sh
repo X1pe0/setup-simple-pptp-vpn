@@ -48,7 +48,7 @@ then
   echo "Need root, try with sudo"
   exit 0
 fi
-
+apt-get install iptables-persistent
 network_interface=$(ip -o -4 route show to default | awk '{print $5}')
 
 apt-get update
@@ -124,7 +124,7 @@ apt-get -y install wget || {
   echo "Could not install wget, required to retrieve your IP address." 
   exit 1
 }
-
+service iptables save
 #find out external ip 
 IP=`wget -q -O - http://api.ipify.org`
 
